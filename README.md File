@@ -1,0 +1,26 @@
+API to PostgreSQL ETL Pipeline
+Project Overview
+Developed an ETL pipeline that extracts customer data from a REST API, validates and transforms JSON responses, loads the data into PostgreSQL, and generates business reports using SQL queries and joins.
+
+Technologies Used
+Python
+PostgreSQL
+Requests
+Psycopg2
+SQL
+Workflow
+REST API ↓ Extract Data ↓ Validate Data ↓ Transform Data ↓ Load into PostgreSQL ↓ SQL Queries & Joins ↓ Business Reports
+
+Features
+API Data Extraction
+Data Validation
+Data Transformation
+PostgreSQL Data Loading
+Business Reporting
+SQL Joins
+Logging
+How to Run
+Create database sales_db
+Execute table creation scripts
+Install dependencies
+pip install -r requirements.txt
