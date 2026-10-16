@@ -1,26 +1,220 @@
-API to PostgreSQL ETL Pipeline
-Project Overview
-Developed an ETL pipeline that extracts customer data from a REST API, validates and transforms JSON responses, loads the data into PostgreSQL, and generates business reports using SQL queries and joins.
+🚀 API to PostgreSQL ETL Pipeline
 
-Technologies Used
+📌 Project Overview
+This project demonstrates an end-to-end ETL (Extract, Transform, Load) pipeline built using Python and PostgreSQL.
+
+The pipeline automatically extracts customer data from a REST API, validates and transforms the incoming JSON data, loads it into PostgreSQL tables, and generates business reports using SQL queries, joins, aggregations, and analytical functions.
+
+🎯 Objectives
+Extract data from REST APIs
+Transform JSON data into a relational format
+Load data into PostgreSQL
+Perform SQL-based business analysis
+Generate meaningful reports
+Demonstrate ETL workflow used in Data Engineering
+
+🛠️ Technologies Used
+Programming
 Python
+Database
 PostgreSQL
-Requests
-Psycopg2
-SQL
-Workflow
-REST API ↓ Extract Data ↓ Validate Data ↓ Transform Data ↓ Load into PostgreSQL ↓ SQL Queries & Joins ↓ Business Reports
+pgAdmin
+Python Libraries
+requests
+psycopg2
+logging
+SQL Concepts
+Joins
+Aggregate Functions
+Group By
+Having
+Window Functions
+Indexing
+Subqueries
 
-Features
-API Data Extraction
-Data Validation
-Data Transformation
-PostgreSQL Data Loading
-Business Reporting
-SQL Joins
-Logging
-How to Run
-Create database sales_db
-Execute table creation scripts
-Install dependencies
+
+📂 Project Structure
+API-PostgreSQL-ETL/
+│
+├── etl_pipeline.py
+├── requirements.txt
+├── create_tables.sql
+├── insert_products.sql
+├── insert_orders.sql
+├── reports.sql
+├── README.md
+└── pipeline.log
+
+
+🔄 ETL Workflow
+REST API
+   │
+   ▼
+Extract Data
+   │
+   ▼
+Validate Data
+   │
+   ▼
+Transform Data
+   │
+   ▼
+Load into PostgreSQL
+   │
+   ▼
+SQL Analysis
+   │
+   ▼
+Business Reports
+
+📥 Data Extraction
+Customer data is retrieved from a REST API using Python Requests.
+
+
+Example:
+response = requests.get(API_URL)
+data = response.json()
+🔍 Data Validation
+The pipeline validates:
+
+Missing values
+Null records
+Invalid customer IDs
+Improper data types
+This ensures only high-quality data enters the database.
+
+🔄 Data Transformation
+JSON responses are transformed into a structured relational format compatible with PostgreSQL.
+
+Example:
+
+{
+  "id": 1,
+  "name": "Sai",
+  "email": "sai@gmail.com"
+}
+Transformed Into:
+
+{
+  "customer_id": 1,
+  "customer_name": "Sai",
+  "email": "sai@gmail.com"
+}
+🗄️ Database Design
+Customers
+customer_id (PK)
+customer_name
+email
+Products
+product_id (PK)
+product_name
+price
+Orders
+order_id (PK)
+customer_id (FK)
+product_id (FK)
+amount
+
+📊 Business Reports
+Total Sales Report
+SELECT SUM(amount)
+FROM orders;
+Customer Sales Report
+SELECT customer_id,
+       SUM(amount)
+FROM orders
+GROUP BY customer_id;
+Product Sales Report
+SELECT p.product_name,
+       SUM(o.amount)
+FROM products p
+JOIN orders o
+ON p.product_id = o.product_id
+GROUP BY p.product_name;
+Top Customers
+SELECT c.customer_name,
+       SUM(o.amount)
+FROM customers c
+JOIN orders o
+ON c.customer_id = o.customer_id
+GROUP BY c.customer_name
+ORDER BY SUM(o.amount) DESC;
+🔗 SQL Concepts Demonstrated
+✅ SELECT
+
+✅ WHERE
+
+✅ GROUP BY
+
+✅ HAVING
+
+✅ ORDER BY
+
+✅ INNER JOIN
+
+✅ LEFT JOIN
+
+✅ Aggregate Functions
+
+✅ Subqueries
+
+✅ Window Functions
+
+✅ Indexing
+
+⚡ Query Optimization
+Created indexes to improve report performance.
+
+CREATE INDEX idx_customer_id
+ON orders(customer_id);
+
+CREATE INDEX idx_product_id
+ON orders(product_id);
+🚀 How to Run
+1️⃣ Create Database
+CREATE DATABASE sales_db;
+2️⃣ Create Tables
+Execute:
+
+create_tables.sql
+3️⃣ Insert Data
+Execute:
+
+insert_products.sql
+insert_orders.sql
+4️⃣ Install Dependencies
 pip install -r requirements.txt
+5️⃣ Run ETL Pipeline
+python etl_pipeline.py
+6️⃣ Execute Reports
+Run all queries available in:
+
+reports.sql
+📈 Sample Insights Generated
+Highest Revenue Products
+Customer Purchase Analysis
+Average Order Value
+Customer Ranking by Spending
+Product Performance Reports
+Total Sales Dashboard Metrics
+🎓 Learning Outcomes
+Through this project, I gained hands-on experience in:
+
+API Integration
+ETL Pipeline Development
+PostgreSQL Database Design
+Data Validation
+SQL Query Optimization
+Business Reporting
+Data Engineering Fundamentals
+💡 Future Enhancements
+Incremental Data Loading
+Airflow Scheduling
+Docker Containerization
+Cloud Database Integration
+Data Warehouse Loading
+Power BI Dashboard Integration
+
+👨‍💻 Author
+Sai Sree Paladugu
+Aspiring Data Engineer | Python | SQL | PostgreSQL | ETL | Data Analytics
