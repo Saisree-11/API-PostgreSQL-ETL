@@ -12,9 +12,9 @@ logging.basicConfig(
 # Database Connection
 conn = psycopg2.connect(
     host="localhost",
-    database="sales_db",
+    database="your_database",
     user="postgres",
-    password="787878"
+    password="you_password"
 )
 
 cursor = conn.cursor()
